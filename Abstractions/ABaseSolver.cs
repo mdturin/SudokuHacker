@@ -1,6 +1,5 @@
 ﻿using SudokuHacker.Interfaces;
 using SudokuHacker.Models;
-using System.Collections.Concurrent;
 
 namespace SudokuHacker.Abstractions;
 
@@ -34,41 +33,35 @@ public abstract class ABaseSolver : ISolver
             }
         }
 
-        ParallelOptions options = new()
+        foreach(var block in blocks)
         {
-            MaxDegreeOfParallelism = 5
-        };
+            var validationErrors = new Dictionary<int, bool>();
 
-        var validationResults = new ConcurrentBag<bool>();
-
-        Parallel.ForEach(blocks, options, block =>
-        {
-            var validationErrors = new ConcurrentDictionary<int, bool>();
-            Parallel.ForEach(block, options, cell => {
+            foreach(var cell in block)
+            {
                 var x = cell.X;
                 var y = cell.Y;
                 var num = data[x][y];
 
-                if(num == 0) return;
+                if(num == 0)
+                    continue;
 
                 if(validationErrors.ContainsKey(num))
                 {
                     Console.WriteLine($"Validation error: {num} already exists in block {block}");
-                    validationResults.Add(false);
-                    return;
+                    return false;
                 }
-                
+
                 if(num < 0 || num > rowSize)
                 {
                     Console.WriteLine($"Validation error: {num} is out of range in block {block}");
-                    validationResults.Add(false);
-                    return;
+                    return false;
                 }
 
-                validationErrors.TryAdd(num, true);
-            });
-        });
+                validationErrors[num] = true;
+            }
+        }
 
-        return validationResults.All(r => r);
+        return true;
     }
 }

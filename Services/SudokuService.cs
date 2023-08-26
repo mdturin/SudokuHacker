@@ -9,10 +9,11 @@ public class SudokuService
 
     public SudokuGrid Solve(SudokuGrid grid)
     {
+        var size = grid.Size();
         var type = grid.Type.ToLower();
         var solver = SudokuSolverFactory.GetSolver(type);
         var blocks = JsonReaderService
-            .ReadDictionaryData<List<List<PairModel>>>(_blocks, type);
+            .ReadDictionaryData<List<List<PairModel>>>(_blocks, $"{type}-{size}");
 
         var blockToId = new Dictionary<PairModel, int>();   
         for(int i=0; i<blocks.Count; ++i)

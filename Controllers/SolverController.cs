@@ -16,7 +16,7 @@ public class SolverController : ControllerBase
         _service = service;
     }
 
-    [HttpPost]
+    [HttpGet]
     public ActionResult<SudokoSolvedDto> Post([FromBody] SudokuGrid grid)
     {
         try
