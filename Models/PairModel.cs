@@ -14,6 +14,6 @@ public class PairModel
 
     public override int GetHashCode()
     {
-        return 0;
+        return X.GetHashCode() ^ Y.GetHashCode();
     }
 }
