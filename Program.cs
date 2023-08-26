@@ -7,6 +7,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<SudokuService>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
