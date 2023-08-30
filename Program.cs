@@ -1,3 +1,4 @@
+using SudokuHacker.Helpers;
 using SudokuHacker.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<SudokuService>();
 builder.Services.AddAutoMapper(typeof(Program));
+
+ConfigurationHelper.Initialize(builder.Configuration);
 
 var app = builder.Build();
 

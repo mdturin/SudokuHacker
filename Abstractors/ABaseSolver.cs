@@ -1,15 +1,9 @@
-﻿using SudokuHacker.Interfaces;
-using SudokuHacker.Models;
+﻿using SudokuHacker.Models;
 
-namespace SudokuHacker.Abstractions;
+namespace SudokuHacker.Abstractors;
 
-public abstract class ABaseSolver : ISolver
+public abstract class ABaseSolver
 {
-    public abstract SudokuGrid Solve(
-        SudokuGrid grid, 
-        List<List<PairModel>> blocks, 
-        Dictionary<PairModel, int> blockToId);
-
     public virtual bool ValidationCheck(
         SudokuGrid grid, 
         List<List<PairModel>> blocks)

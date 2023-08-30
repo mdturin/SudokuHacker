@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "solver": {
+    "SudokuHacker": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
