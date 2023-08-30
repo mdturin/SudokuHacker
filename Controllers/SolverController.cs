@@ -19,19 +19,19 @@ public class SolverController : ControllerBase
         _service = service;
     }
 
-    [HttpPost]
-    public ActionResult<SudokoSolvedDto> Post([FromBody] SudokuGrid grid)
-    {
-        try
-        {
-            var result = _service.Solve(grid);
-            var answer = _mapper
-                .Map<SudokoSolvedDto>(result);
-            return Ok(answer);
-        }
-        catch(Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
-    }
+    //[HttpPost]
+    //public ActionResult<SudokoSolvedDto> Post([FromBody] SudokuGrid grid)
+    //{
+    //    try
+    //    {
+    //        var result = _service.Solve(grid);
+    //        var answer = _mapper
+    //            .Map<SudokoSolvedDto>(result);
+    //        return Ok(answer);
+    //    }
+    //    catch(Exception ex)
+    //    {
+    //        return BadRequest(ex.Message);
+    //    }
+    //}
 }

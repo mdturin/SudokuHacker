@@ -1,3 +1,4 @@
+using SudokuHacker.Extensions;
 using SudokuHacker.Helpers;
 using SudokuHacker.Services;
 
@@ -25,6 +26,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
+app.MapSudoku();
 
 app.Run();
